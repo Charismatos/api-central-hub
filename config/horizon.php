@@ -28,6 +28,17 @@ return [
     |
     */
 
+    /*
+    |--------------------------------------------------------------------------
+    | Horizon Domain
+    |--------------------------------------------------------------------------
+    | What: Defines the URI path where the Horizon monitoring dashboard is hosted.
+    | Where: Config file config/horizon.php.
+    | When: Loaded during application bootstrapping.
+    | Who: Platform Administrator.
+    | Why: Restricts access to ensure internal infrastructure metrics are secure.
+    */
+
     'domain' => env('HORIZON_DOMAIN'),
 
     /*
@@ -194,6 +205,19 @@ return [
     | in all environments. These supervisors and settings handle all your
     | queued jobs and will be provisioned by Horizon during deployment.
     |
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Queue Worker Environments & Supervisors
+    |--------------------------------------------------------------------------
+    | What: Sets up code-driven worker configurations to automatically balance 
+    |       jobs across queues (e.g., fintech-critical vs e-commerce bulk imports).
+    | Where: Process monitoring layer.
+    | When: Managed continuously by the `php artisan horizon` daemon process.
+    | Who: Laravel Horizon Supervisor.
+    | Why: Keeps hosting resource costs low by scaling worker processes dynamically 
+    |       based on actual queue load, preventing server CPU exhaustion.
     */
 
     'defaults' => [
